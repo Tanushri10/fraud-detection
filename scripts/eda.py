@@ -1,20 +1,20 @@
-# scripts/eda.py
-
+import sys
+import os
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 
-# Load the dataset
-df = pd.read_csv('data/creditcard.csv')
+# Add parent to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Basic overview
-print("Top Rows:")
-print(df.head())
+from src.data_loader import load_data
 
-print("\nClass Distribution:")
-print(df['Class'].value_counts())
+def run_eda():
+    df = load_data('data/creditcard.csv')
 
-# Plot class distribution
-sns.countplot(x='Class', data=df)
-plt.title("Class Distribution (0 = Not Fraud, 1 = Fraud)")
-plt.savefig("outputs/figures/class_distribution.png")
+    print("✅ EDA Starting...")
+    print("Shape:", df.shape)
+    print("\nMissing Values:\n", df.isnull().sum())
+    print("\nClass Distribution:\n", df['Class'].value_counts(normalize=True))
+
+if __name__ == "__main__":
+    run_eda()
+

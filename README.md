@@ -1,80 +1,37 @@
 Credit Card Fraud Detection
-This project aims to detect fraudulent transactions using machine learning techniques on a highly imbalanced dataset. It demonstrates data preprocessing, visualization, model building, evaluation, and saving the model for future use.
+This project explores fraud detection using machine learning techniques on real-world credit card transaction data. It walks through essential steps such as data preprocessing, visualization, model training, and evaluation.
 
-📁 Project Structure
-bash
-Copy
-Edit
-creditcard-fraud-detection/
-├── data/
-│   └── creditcard.csv           # Raw dataset
-├── model/
-│   ├── model.py                 # Script to train and save the model
-│   ├── predict.py               # Script to load model and predict new inputs
-│   ├── fraud_model.pkl          # Saved trained model
-│   └── scaler.pkl               # Saved MinMaxScaler
-├── visualization/
-│   └── visualize.py             # Data visualization and exploration
-├── README.md                    # Project documentation
-📊 Dataset
-Source: Kaggle Credit Card Fraud Detection Dataset
+📊 Dataset Overview
+Source: Kaggle - Credit Card Fraud Detection
 
-Description: The dataset contains transactions made by European cardholders in September 2013. It has 284,807 transactions with 492 frauds (0.172%).
+Size: 284,807 transactions
 
-Features: Time, Amount, 28 anonymized PCA features (V1 to V28), and Class (target: 0 = Not Fraud, 1 = Fraud)
+Fraud Cases: Only 492 (highly imbalanced)
 
-⚙️ Technologies Used
-Python
+Features: Anonymized PCA components, Time, Amount, and Class (target)
 
-Pandas, NumPy
+🔍 What We Did
+1. Data Processing
+Cleaned data by removing duplicates and missing values
 
-Scikit-learn
+Scaled important features like Time and Amount to normalize their ranges
 
-Matplotlib, Seaborn
+Split the dataset while maintaining class proportions using stratified sampling
 
-Joblib
+2. Visualization
+Plotted class distribution to highlight imbalance
 
-🧼 Data Preprocessing
-Dropped duplicate entries
+Explored transaction patterns by Time and Amount for fraud vs. non-fraud
 
-Normalized Amount and Time using MinMaxScaler
+Used a heatmap to analyze correlations between all features
 
-Stratified train-test split (80:20) to preserve fraud ratio
+3. Model Building
+Built a classification model using Random Forest
 
-Stored the scaler as scaler.pkl for deployment
+Focused on performance metrics suited for imbalanced data (Precision, Recall, F1-score)
 
-📊 Data Visualization
-Using matplotlib and seaborn, we visualized:
+Saved the trained model and scaler for reuse
 
-Class Imbalance
-
-Transaction Amounts and Time (fraud vs non-fraud)
-
-Correlation heatmap of features
-
-These plots helped identify the data distribution and relationships among features.
-
-🤖 Model Building
-Algorithm: Random Forest Classifier
-
-Trained on preprocessed data to classify transactions
-
-Model was saved as fraud_model.pkl using joblib
-
-Evaluation metrics: Confusion matrix, precision, recall, f1-score
-
-
-📈 Results
-The Random Forest model performs well on the imbalanced dataset, especially in precision and recall for the fraud class.
-
-Visualization and processing steps make the model interpretable and production-ready.
-
-✅ Conclusion
-This project highlights the complete pipeline of solving a real-world fraud detection problem using supervised learning—from data preprocessing and EDA to model training and deployment preparation. Future enhancements can include:
-
-Anomaly detection techniques
-
-Real-time fraud detection with streaming data
-
-Model explainability (e.g., SHAP, LIME)
+✅ Outcomes
+The final model provides a solid baseline for detecting fraudulent transactions in an imbalanced setting. This project demonstrates the importance of preprocessing and thoughtful evaluation when working with sensitive, real-world datasets like financial fraud.
 
